@@ -1,0 +1,13 @@
+# API key — ห้ามอัพโหลดเด็ดขาด
+.env
+
+# Virtual environment — ติดตั้งใหม่ได้เสมอ
+backend/venv/
+
+# Node modules — ติดตั้งใหม่ได้เสมอ
+frontend/node_modules/
+
+# ไฟล์ระบบ
+.DS_Store
+__pycache__/
+*.pyc
