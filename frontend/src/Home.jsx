@@ -25,18 +25,18 @@ export default function Home({ onStart }) {
     {
       icon: "🚀",
       title: "AI อัจฉริยะ",
-      desc: "เทคโนโลยี AI ที่ทันสมัยสำหรับเกษตร",
+      desc: "เทคโนโลยี AI สำหรับเกษตร",
       question: "AI ช่วยเกษตรกรได้อย่างไรบ้าง"
     }
   ]
 
   return (
     <div style={styles.container}>
-      {/* Background decoration */}
-      <div style={styles.bgDecorator1}></div>
-      <div style={styles.bgDecorator2}></div>
+      <div style={styles.bg1}></div>
+      <div style={styles.bg2}></div>
 
       <div style={styles.content}>
+
         {/* Header */}
         <div style={styles.header}>
           <div style={styles.logo}>🌾</div>
@@ -44,23 +44,23 @@ export default function Home({ onStart }) {
           <p style={styles.subtitle}>AI ผู้ช่วยเกษตรกรรมยั่งยืน</p>
         </div>
 
-        {/* Feature Cards */}
-        <div style={styles.featuresGrid}>
-          {questions.map((q, idx) => (
-            <div 
-              key={idx}
+        {/* Cards */}
+        <div style={styles.grid}>
+          {questions.map((q, i) => (
+            <div
+              key={i}
               style={styles.card}
               onClick={() => onStart(q.question)}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.transform = "translateY(-8px)"
-                e.currentTarget.style.boxShadow = "0 12px 20px rgba(22, 163, 74, 0.15)"
+              onMouseEnter={e => {
+                e.currentTarget.style.transform = "translateY(-6px)"
+                e.currentTarget.style.boxShadow = "0 12px 20px rgba(22,163,74,0.15)"
               }}
-              onMouseLeave={(e) => {
+              onMouseLeave={e => {
                 e.currentTarget.style.transform = "translateY(0)"
-                e.currentTarget.style.boxShadow = "0 4px 6px rgba(22, 163, 74, 0.08)"
+                e.currentTarget.style.boxShadow = "0 4px 6px rgba(22,163,74,0.08)"
               }}
             >
-              <div style={styles.cardIcon}>{q.icon}</div>
+              <div style={styles.icon}>{q.icon}</div>
               <h3>{q.title}</h3>
               <p>{q.desc}</p>
             </div>
@@ -69,38 +69,26 @@ export default function Home({ onStart }) {
 
         {/* Highlights */}
         <div style={styles.highlights}>
-          <div style={styles.highlight}>
-            <span style={styles.highlightIcon}>✨</span>
-            <span>ตอบคำถามได้ 24/7</span>
-          </div>
-          <div style={styles.highlight}>
-            <span style={styles.highlightIcon}>📚</span>
-            <span>ฐานความรู้ครอบคลุม</span>
-          </div>
-          <div style={styles.highlight}>
-            <span style={styles.highlightIcon}>🎯</span>
-            <span>คำแนะนำตรงตามความต้องการ</span>
-          </div>
+          <span>✨ ใช้งานได้ 24/7</span>
+          <span>📚 ความรู้ครบ</span>
+          <span>🎯 ตรงจุด</span>
         </div>
 
-        {/* CTA Button */}
-        <button 
+        {/* Button */}
+        <button
           style={{
-            ...styles.ctaButton,
-            ...(isHovered ? styles.ctaButtonHover : {})
+            ...styles.button,
+            ...(isHovered ? styles.buttonHover : {})
           }}
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
           onClick={() => onStart("")}
         >
-          <span style={styles.ctaText}>เริ่มสนทนา</span>
-          <span style={styles.ctaArrow}>→</span>
+          เริ่มสนทนา →
         </button>
 
-        {/* Footer */}
-        <p style={styles.footer}>
-          ช่วยคุณเพาะปลูกอย่างฉลาด เลือกโดยใจ 🌿
-        </p>
+        <p style={styles.footer}>🌿 เกษตรอัจฉริยะ เพื่ออนาคตที่ยั่งยืน</p>
+
       </div>
     </div>
   )
@@ -110,156 +98,112 @@ const styles = {
   container: {
     minHeight: "100vh",
     width: "100%",
-    background: "linear-gradient(135deg, #f0fdf4 0%, #ecfdf5 50%, #f0fdf4 100%)",
+    paddingTop: 80, // 🔥 แก้ติดขอบบนตรงนี้
+    background: "linear-gradient(135deg,#f0fdf4,#ecfdf5)",
     display: "flex",
-    alignItems: "center",
+    alignItems: "flex-start", // 🔥 สำคัญ
     justifyContent: "center",
     position: "relative",
     overflow: "hidden",
     fontFamily: "Inter, sans-serif"
   },
 
-  bgDecorator1: {
+  bg1: {
     position: "absolute",
-    top: "-50%",
+    top: "-30%",
     right: "-10%",
-    width: "500px",
-    height: "500px",
-    background: "radial-gradient(circle, rgba(22, 163, 74, 0.08) 0%, transparent 70%)",
-    borderRadius: "50%",
-    pointerEvents: "none"
+    width: 400,
+    height: 400,
+    background: "rgba(22,163,74,0.08)",
+    borderRadius: "50%"
   },
 
-  bgDecorator2: {
+  bg2: {
     position: "absolute",
     bottom: "-20%",
     left: "-10%",
-    width: "400px",
-    height: "400px",
-    background: "radial-gradient(circle, rgba(22, 163, 74, 0.06) 0%, transparent 70%)",
-    borderRadius: "50%",
-    pointerEvents: "none"
+    width: 300,
+    height: 300,
+    background: "rgba(22,163,74,0.06)",
+    borderRadius: "50%"
   },
 
   content: {
-    position: "relative",
-    zIndex: 1,
+    maxWidth: 1000,
+    width: "100%",
     textAlign: "center",
-    maxWidth: "900px",
-    paddingX: 24,
-    animation: "fadeIn 0.8s ease-in"
+    padding: "0 20px"
   },
 
   header: {
-    marginBottom: 60
+    marginBottom: 50
   },
 
   logo: {
-    fontSize: 80,
-    marginBottom: 20,
-    display: "block",
-    animation: "float 3s ease-in-out infinite"
+    fontSize: 70,
+    marginBottom: 10
   },
 
   title: {
-    fontSize: 56,
+    fontSize: 48,
     fontWeight: 700,
-    color: "#14532d",
-    marginBottom: 12,
-    lineHeight: 1.2
+    color: "#14532d"
   },
 
   subtitle: {
-    fontSize: 20,
-    color: "#6b7280",
-    fontWeight: 400
+    fontSize: 18,
+    color: "#6b7280"
   },
 
-  featuresGrid: {
+  grid: {
     display: "grid",
-    gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))",
+    gridTemplateColumns: "repeat(auto-fit,minmax(200px,1fr))",
     gap: 20,
-    marginBottom: 50,
-    padding: "0 20px"
+    marginBottom: 40
   },
 
   card: {
     background: "#fff",
-    padding: 24,
-    borderRadius: 16,
+    padding: 20,
+    borderRadius: 14,
     border: "1px solid #d1fae5",
-    boxShadow: "0 4px 6px rgba(22, 163, 74, 0.08)",
-    transition: "all 0.3s ease",
+    boxShadow: "0 4px 6px rgba(22,163,74,0.08)",
     cursor: "pointer",
-    "&:hover": {
-      transform: "translateY(-8px)",
-      boxShadow: "0 12px 20px rgba(22, 163, 74, 0.15)"
-    }
+    transition: "0.3s"
   },
 
-  cardIcon: {
-    fontSize: 48,
-    marginBottom: 12,
-    display: "block"
+  icon: {
+    fontSize: 40,
+    marginBottom: 10
   },
 
   highlights: {
     display: "flex",
     justifyContent: "center",
-    gap: 30,
-    marginBottom: 50,
+    gap: 20,
+    marginBottom: 30,
     flexWrap: "wrap",
-    padding: "0 20px"
+    color: "#14532d"
   },
 
-  highlight: {
-    display: "flex",
-    alignItems: "center",
-    gap: 10,
-    fontSize: 16,
-    color: "#14532d",
-    fontWeight: 500
-  },
-
-  highlightIcon: {
-    fontSize: 24
-  },
-
-  ctaButton: {
-    background: "linear-gradient(135deg, #16a34a 0%, #15803d 100%)",
+  button: {
+    background: "#16a34a",
     color: "#fff",
     border: "none",
-    padding: "16px 48px",
-    borderRadius: 16,
-    fontSize: 18,
-    fontWeight: 600,
+    padding: "14px 40px",
+    borderRadius: 12,
+    fontSize: 16,
     cursor: "pointer",
-    display: "inline-flex",
-    alignItems: "center",
-    gap: 12,
-    boxShadow: "0 8px 20px rgba(22, 163, 74, 0.3)",
-    transition: "all 0.3s ease",
-    marginBottom: 40
+    transition: "0.3s"
   },
 
-  ctaButtonHover: {
+  buttonHover: {
     transform: "translateY(-2px)",
-    boxShadow: "0 12px 30px rgba(22, 163, 74, 0.4)"
-  },
-
-  ctaText: {
-    fontSize: 18
-  },
-
-  ctaArrow: {
-    fontSize: 20,
-    marginLeft: 4,
-    transition: "transform 0.3s ease"
+    boxShadow: "0 8px 20px rgba(22,163,74,0.3)"
   },
 
   footer: {
-    color: "#6b7280",
-    fontSize: 16,
-    marginTop: 20
+    marginTop: 20,
+    color: "#6b7280"
   }
 }
