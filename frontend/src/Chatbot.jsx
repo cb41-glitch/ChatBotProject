@@ -4,7 +4,7 @@ import ReactMarkdown from "react-markdown"
 
 const API_URL = "http://localhost:8000/api/chat"
 
-export default function Chatbot() {
+export default function Chatbot({ onBackHome }) {
   const [messages, setMessages] = useState([
     { role: "bot", text: "🌱 สวัสดี! ฉันคือ AI เกษตรหมุนเวียน ถามได้เลยเกี่ยวกับดิน ปุ๋ย หรือการปลูกพืช" }
   ])
@@ -73,11 +73,29 @@ export default function Chatbot() {
 
         {/* Header */}
         <div style={styles.header}>
-          <div>
-            <b>🌾 Circular Farming Assistant</b>
-            <div style={{ fontSize: 12, color: "#666" }}>
-              ออนไลน์ • พร้อมช่วยเหลือ
+          <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", width: "100%" }}>
+            <div>
+              <b>🌾 Circular Farming Assistant</b>
+              <div style={{ fontSize: 12, color: "#666" }}>
+                ออนไลน์ • พร้อมช่วยเหลือ
+              </div>
             </div>
+            {onBackHome && (
+              <button 
+                onClick={onBackHome}
+                style={styles.backButton}
+                onMouseEnter={(e) => {
+                  e.target.style.background = "rgba(22, 163, 74, 0.1)"
+                  e.target.style.transform = "scale(1.1)"
+                }}
+                onMouseLeave={(e) => {
+                  e.target.style.background = "transparent"
+                  e.target.style.transform = "scale(1)"
+                }}
+              >
+                ← กลับหน้าแรก
+              </button>
+            )}
           </div>
         </div>
 
@@ -297,6 +315,18 @@ const styles = {
       transform: "translateY(-1px)",
       boxShadow: "0 4px 12px rgba(22, 163, 74, 0.3)"
     }
+  },
+
+  backButton: {
+    background: "transparent",
+    color: "#16a34a",
+    border: "1px solid #d1fae5",
+    padding: "8px 16px",
+    borderRadius: 10,
+    cursor: "pointer",
+    fontWeight: 500,
+    fontSize: 13,
+    transition: "all 0.3s ease"
   },
 
   sources: {
