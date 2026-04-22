@@ -127,21 +127,35 @@ export default function Chatbot() {
         </div>
       </div>
 
-      {/* Sources */}
-      <div style={styles.sources}>
-        <h4>📄 แหล่งข้อมูล</h4>
-
-        {sources.length === 0 ? (
-          <p style={{ color: "#aaa" }}>ยังไม่มีข้อมูล</p>
-        ) : sources.map((s, i) => (
-          <div key={i} style={styles.card}>
-            <b>{s.title}</b>
-            <p style={{ fontSize: 12 }}>{s.chunk}</p>
-            <span style={{ color: scoreColor(s.score) }}>
-              score: {s.score}
-            </span>
+{/* Info Panel */}
+      <div style={styles.infoPanel}>
+        <div style={styles.infoPanelContent}>
+          <h3 style={styles.infoPanelTitle}>💡 เคล็ดลับการเกษตร</h3>
+          
+          <div style={styles.tipCard}>
+            <div style={styles.tipIcon}>🌿</div>
+            <div style={styles.tipText}>
+              <strong>ปลูกพืช</strong>
+              <p>วางแผนการปลูกพืชอย่างสมเหตุสมผล</p>
+            </div>
           </div>
-        ))}
+
+          <div style={styles.tipCard}>
+            <div style={styles.tipIcon}>🌱</div>
+            <div style={styles.tipText}>
+              <strong>ดินสุขภาพดี</strong>
+              <p>รักษาคุณภาพดินด้วยปุ๋ยเหมาะสม</p>
+            </div>
+          </div>
+
+          <div style={styles.tipCard}>
+            <div style={styles.tipIcon}>♻️</div>
+            <div style={styles.tipText}>
+              <strong>เกษตรหมุนเวียน</strong>
+              <p>สนับสนุนการเกษตรยั่งยืน</p>
+            </div>
+          </div>
+        </div>
       </div>
 
     </div>
@@ -155,56 +169,71 @@ const styles = {
     display: "flex",
     height: "100vh",
     fontFamily: "Inter, sans-serif",
-    background: "#eef7f0"
+    background: "#fff",
+    overflow: "hidden"
   },
 
   sidebar: {
     width: 220,
-    background: "#14532d",
+    background: "linear-gradient(135deg, #14532d 0%, #1a6b3a 100%)",
     color: "#fff",
-    padding: 20,
+    padding: 24,
     display: "flex",
-    flexDirection: "column"
+    flexDirection: "column",
+    boxShadow: "2px 0 8px rgba(0, 0, 0, 0.1)"
   },
 
   menu: {
     display: "flex",
     flexDirection: "column",
-    gap: 10
+    gap: 12,
+    marginTop: 24
   },
 
   menuItem: {
-    padding: "10px 12px",
-    borderRadius: 8,
+    padding: "12px 14px",
+    borderRadius: 10,
     cursor: "pointer",
-    background: "rgba(255,255,255,0.05)"
+    background: "rgba(255,255,255,0.08)",
+    transition: "all 0.3s ease",
+    fontSize: 14,
+    fontWeight: 500,
+    border: "1px solid rgba(255,255,255,0.1)",
+    "&:hover": {
+      background: "rgba(255,255,255,0.15)"
+    }
   },
 
   footer: {
     marginTop: "auto",
     fontSize: 12,
-    opacity: 0.7
+    opacity: 0.8,
+    paddingTop: 20,
+    borderTop: "1px solid rgba(255,255,255,0.1)"
   },
 
   chat: {
     flex: 1,
     display: "flex",
-    flexDirection: "column"
+    flexDirection: "column",
+    background: "#f8fafb"
   },
 
   header: {
-    padding: 16,
-    borderBottom: "1px solid #ddd",
-    background: "#fff"
+    padding: "20px 24px",
+    borderBottom: "1px solid #e5e7eb",
+    background: "#fff",
+    boxShadow: "0 1px 3px rgba(0, 0, 0, 0.05)"
   },
 
   messages: {
     flex: 1,
     overflowY: "auto",
-    padding: 20,
+    padding: "24px",
     display: "flex",
     flexDirection: "column",
-    gap: 12
+    gap: 16,
+    background: "#f8fafb"
   },
 
   bubble: {
@@ -212,57 +241,134 @@ const styles = {
     padding: "12px 16px",
     borderRadius: 16,
     fontSize: 14,
-    lineHeight: 1.6
+    lineHeight: 1.6,
+    wordWrap: "break-word"
   },
 
   user: {
-    background: "#16a34a",
-    color: "#fff"
+    background: "linear-gradient(135deg, #16a34a 0%, #15803d 100%)",
+    color: "#fff",
+    boxShadow: "0 2px 8px rgba(22, 163, 74, 0.2)"
   },
 
   bot: {
     background: "#fff",
-    border: "1px solid #ddd"
+    border: "1px solid #e5e7eb",
+    boxShadow: "0 1px 3px rgba(0, 0, 0, 0.05)"
   },
 
   inputBox: {
     display: "flex",
-    padding: 12,
-    gap: 10,
+    padding: 16,
+    gap: 12,
     background: "#fff",
-    borderTop: "1px solid #ddd"
+    borderTop: "1px solid #e5e7eb",
+    boxShadow: "0 -1px 3px rgba(0, 0, 0, 0.05)"
   },
 
   textarea: {
     flex: 1,
     resize: "none",
-    borderRadius: 10,
-    border: "1px solid #ccc",
-    padding: 10
+    borderRadius: 12,
+    border: "1px solid #e5e7eb",
+    padding: "12px 14px",
+    fontFamily: "Inter, sans-serif",
+    fontSize: 14,
+    transition: "all 0.3s ease",
+    outline: "none",
+    "&:focus": {
+      borderColor: "#16a34a",
+      boxShadow: "0 0 0 3px rgba(22, 163, 74, 0.1)"
+    }
   },
 
   button: {
-    background: "#16a34a",
+    background: "linear-gradient(135deg, #16a34a 0%, #15803d 100%)",
     color: "#fff",
     border: "none",
-    padding: "0 20px",
-    borderRadius: 10,
-    cursor: "pointer"
+    padding: "12px 24px",
+    borderRadius: 12,
+    cursor: "pointer",
+    fontWeight: 600,
+    fontSize: 14,
+    transition: "all 0.3s ease",
+    boxShadow: "0 2px 8px rgba(22, 163, 74, 0.2)",
+    "&:hover": {
+      transform: "translateY(-1px)",
+      boxShadow: "0 4px 12px rgba(22, 163, 74, 0.3)"
+    }
   },
 
   sources: {
-    width: 260,
-    background: "#f9fafb",
-    padding: 16,
+    width: 280,
+    background: "#fff",
+    padding: 20,
     overflowY: "auto",
-    borderLeft: "1px solid #ddd"
+    borderLeft: "1px solid #e5e7eb",
+    boxShadow: "-2px 0 8px rgba(0, 0, 0, 0.05)"
   },
 
   card: {
+    background: "#f8fafb",
+    padding: 12,
+    borderRadius: 12,
+    marginBottom: 12,
+    fontSize: 12,
+    border: "1px solid #e5e7eb",
+    transition: "all 0.3s ease"
+  },
+
+  infoPanel: {
+    width: 300,
+    background: "linear-gradient(135deg, #f0fdf4 0%, #f1fdf8 100%)",
+    padding: 24,
+    overflowY: "auto",
+    borderLeft: "1px solid #e5e7eb",
+    display: "flex",
+    flexDirection: "column"
+  },
+
+  infoPanelContent: {
+    display: "flex",
+    flexDirection: "column",
+    gap: 16
+  },
+
+  infoPanelTitle: {
+    fontSize: 16,
+    fontWeight: 600,
+    color: "#14532d",
+    marginBottom: 12,
+    margin: 0
+  },
+
+  tipCard: {
     background: "#fff",
-    padding: 10,
-    borderRadius: 10,
-    marginBottom: 10,
-    fontSize: 12
+    padding: 14,
+    borderRadius: 12,
+    border: "1px solid #d1fae5",
+    display: "flex",
+    gap: 12,
+    cursor: "pointer",
+    transition: "all 0.3s ease",
+    boxShadow: "0 1px 3px rgba(22, 163, 74, 0.08)",
+    "&:hover": {
+      transform: "translateY(-2px)",
+      boxShadow: "0 4px 12px rgba(22, 163, 74, 0.15)"
+    }
+  },
+
+  tipIcon: {
+    fontSize: 24,
+    minWidth: 32,
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center"
+  },
+
+  tipText: {
+    textAlign: "left",
+    fontSize: 13,
+    color: "#374151"
   }
 }

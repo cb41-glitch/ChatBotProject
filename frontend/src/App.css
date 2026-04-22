@@ -8,18 +8,29 @@
 html, body, #root {
   height: 100%;
   width: 100%;
-  background: #eef7f0;
+  background: #fff;
   font-family: "Inter", sans-serif;
+  overflow: hidden;
 }
 
-/* SCROLLBAR (optional สวยขึ้น) */
+/* SCROLLBAR */
 ::-webkit-scrollbar {
-  width: 6px;
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #16a34a;
+  background: #cbd5e0;
   border-radius: 10px;
+  transition: background 0.3s;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #16a34a;
 }
 
 /* CHAT AREA */
@@ -32,28 +43,34 @@ html, body, #root {
 /* SIDEBAR */
 .sidebar {
   width: 220px;
-  background: #14532d;
+  background: linear-gradient(135deg, #14532d 0%, #1a6b3a 100%);
   color: white;
-  padding: 20px;
+  padding: 24px;
   display: flex;
   flex-direction: column;
+  box-shadow: 2px 0 8px rgba(0, 0, 0, 0.1);
 }
 
 .sidebar h2 {
-  margin-bottom: 20px;
+  margin-bottom: 24px;
+  font-size: 18px;
+  font-weight: 600;
 }
 
 .menu-item {
-  padding: 10px 12px;
-  border-radius: 8px;
+  padding: 12px 14px;
+  border-radius: 10px;
   cursor: pointer;
   margin-bottom: 8px;
-  background: rgba(255,255,255,0.05);
-  transition: 0.2s;
+  background: rgba(255,255,255,0.08);
+  transition: all 0.3s ease;
+  font-weight: 500;
+  border: 1px solid rgba(255,255,255,0.1);
 }
 
 .menu-item:hover {
   background: rgba(255,255,255,0.15);
+  transform: translateX(4px);
 }
 
 /* CHAT */
@@ -61,24 +78,26 @@ html, body, #root {
   flex: 1;
   display: flex;
   flex-direction: column;
-  background: #eef7f0;
+  background: #f8fafb;
 }
 
 /* HEADER */
 .chat-header {
-  padding: 16px;
+  padding: 20px 24px;
   background: white;
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid #e5e7eb;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
 }
 
 /* MESSAGES */
 .chat-messages {
   flex: 1;
-  padding: 20px;
+  padding: 24px;
   overflow-y: auto;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 16px;
+  background: #f8fafb;
 }
 
 /* BUBBLE */
@@ -88,16 +107,21 @@ html, body, #root {
   border-radius: 16px;
   font-size: 14px;
   line-height: 1.6;
+  word-wrap: break-word;
 }
 
 .bubble.user {
-  background: #16a34a;
+  background: linear-gradient(135deg, #16a34a 0%, #15803d 100%);
   color: white;
   align-self: flex-end;
+  box-shadow: 0 2px 8px rgba(22, 163, 74, 0.2);
 }
 
 .bubble.bot {
   background: white;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
   border: 1px solid #ddd;
   align-self: flex-start;
 }
